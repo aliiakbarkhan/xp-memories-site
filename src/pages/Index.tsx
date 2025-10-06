@@ -9,6 +9,7 @@ import AchievementsWindow from "@/components/windows/AchievementsWindow";
 import ResumeWindow from "@/components/windows/ResumeWindow";
 import ContactWindow from "@/components/windows/ContactWindow";
 import GalleryWindow from "@/components/windows/GalleryWindow";
+import MinesweeperWindow from "@/components/windows/MinesweeperWindow";
 
 export interface WindowState {
   id: string;
@@ -88,6 +89,9 @@ const Index = () => {
         break;
       case "gallery":
         component = <GalleryWindow />;
+        break;
+      case "minesweeper":
+        component = <MinesweeperWindow />;
         break;
       default:
         component = <div>Window content</div>;
