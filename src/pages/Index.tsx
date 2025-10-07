@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Desktop from "@/components/Desktop";
 import Taskbar from "@/components/Taskbar";
 import WindowContainer from "@/components/WindowContainer";
+import BootScreen from "@/components/BootScreen";
 import AboutWindow from "@/components/windows/AboutWindow";
 import ProjectsWindow from "@/components/windows/ProjectsWindow";
 import ServicesWindow from "@/components/windows/ServicesWindow";
@@ -10,6 +11,7 @@ import ResumeWindow from "@/components/windows/ResumeWindow";
 import ContactWindow from "@/components/windows/ContactWindow";
 import GalleryWindow from "@/components/windows/GalleryWindow";
 import MinesweeperWindow from "@/components/windows/MinesweeperWindow";
+import { sounds } from "@/utils/sounds";
 
 export interface WindowState {
   id: string;
@@ -20,8 +22,15 @@ export interface WindowState {
 }
 
 const Index = () => {
+  const [showBoot, setShowBoot] = useState(true);
   const [openWindows, setOpenWindows] = useState<WindowState[]>([]);
   const [nextZIndex, setNextZIndex] = useState(1);
+
+  useEffect(() => {
+    if (!showBoot) {
+      sounds.startup();
+    }
+  }, [showBoot]);
 
   const openWindow = (id: string, title: string, component: React.ReactNode) => {
     const existingWindow = openWindows.find((w) => w.id === id);
@@ -99,6 +108,10 @@ const Index = () => {
     
     openWindow(id, title, component);
   };
+
+  if (showBoot) {
+    return <BootScreen onComplete={() => setShowBoot(false)} />;
+  }
 
   return (
     <div className="relative h-screen w-screen overflow-hidden bg-gradient-to-b from-[#5A9F3E] via-[#88C85A] to-[#5A9F3E] font-['Tahoma',_'MS_Sans_Serif',_sans-serif]">

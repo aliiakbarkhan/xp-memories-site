@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { sounds } from "@/utils/sounds";
 
 interface WindowContainerProps {
   id: string;
@@ -27,10 +28,16 @@ const WindowContainer = ({
   const windowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Random initial position
-    const randomX = Math.floor(Math.random() * 200) + 50;
-    const randomY = Math.floor(Math.random() * 100) + 50;
-    setPosition({ x: randomX, y: randomY });
+    // Random initial position (only on desktop)
+    const isMobile = window.innerWidth < 768;
+    if (!isMobile) {
+      const randomX = Math.floor(Math.random() * 200) + 50;
+      const randomY = Math.floor(Math.random() * 100) + 50;
+      setPosition({ x: randomX, y: randomY });
+    } else {
+      setIsMaximized(true); // Auto-maximize on mobile
+    }
+    sounds.open();
   }, []);
 
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -69,6 +76,7 @@ const WindowContainer = ({
   }, [isDragging, dragOffset, isMaximized]);
 
   const handleMaximize = () => {
+    sounds.maximize();
     if (isMaximized) {
       setPosition(savedPosition);
       setIsMaximized(false);
@@ -79,7 +87,19 @@ const WindowContainer = ({
     }
   };
 
-  const windowStyle = isMaximized
+  const handleClose = () => {
+    sounds.close();
+    onClose();
+  };
+
+  const handleMinimize = () => {
+    sounds.minimize();
+    onMinimize();
+  };
+
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  
+  const windowStyle = isMaximized || isMobile
     ? { width: "100%", height: "calc(100% - 40px)", top: 0, left: 0 }
     : { top: position.y, left: position.x, width: "700px", maxWidth: "90vw" };
 
@@ -106,20 +126,22 @@ const WindowContainer = ({
         </div>
         <div className="flex gap-1">
           <button
-            onClick={onMinimize}
-            className="w-6 h-6 bg-[#ECE9D8] hover:bg-[#D4D0C8] border-2 border-t-white border-l-white border-r-gray-600 border-b-gray-600 flex items-center justify-center font-bold text-black"
+            onClick={handleMinimize}
+            className="w-6 h-6 md:w-6 md:h-6 bg-[#ECE9D8] hover:bg-[#D4D0C8] border-2 border-t-white border-l-white border-r-gray-600 border-b-gray-600 flex items-center justify-center font-bold text-black text-sm md:text-base"
           >
             _
           </button>
+          {!isMobile && (
+            <button
+              onClick={handleMaximize}
+              className="w-6 h-6 bg-[#ECE9D8] hover:bg-[#D4D0C8] border-2 border-t-white border-l-white border-r-gray-600 border-b-gray-600 flex items-center justify-center text-black"
+            >
+              {isMaximized ? "❐" : "□"}
+            </button>
+          )}
           <button
-            onClick={handleMaximize}
-            className="w-6 h-6 bg-[#ECE9D8] hover:bg-[#D4D0C8] border-2 border-t-white border-l-white border-r-gray-600 border-b-gray-600 flex items-center justify-center text-black"
-          >
-            {isMaximized ? "❐" : "□"}
-          </button>
-          <button
-            onClick={onClose}
-            className="w-6 h-6 bg-[#ECE9D8] hover:bg-red-500 hover:text-white border-2 border-t-white border-l-white border-r-gray-600 border-b-gray-600 flex items-center justify-center font-bold text-black"
+            onClick={handleClose}
+            className="w-6 h-6 md:w-6 md:h-6 bg-[#ECE9D8] hover:bg-red-500 hover:text-white border-2 border-t-white border-l-white border-r-gray-600 border-b-gray-600 flex items-center justify-center font-bold text-black text-sm md:text-base"
           >
             ×
           </button>
@@ -127,7 +149,7 @@ const WindowContainer = ({
       </div>
 
       {/* Window Content */}
-      <div className="bg-white overflow-auto max-h-[calc(100vh-200px)] border-2 border-t-gray-600 border-l-gray-600 border-r-white border-b-white">
+      <div className="bg-white overflow-auto h-[calc(100vh-120px)] md:max-h-[calc(100vh-200px)] border-2 border-t-gray-600 border-l-gray-600 border-r-white border-b-white">
         {children}
       </div>
     </div>

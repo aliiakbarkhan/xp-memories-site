@@ -17,7 +17,7 @@ const Desktop = ({ onIconClick }: DesktopProps) => {
   ];
 
   return (
-    <div className="absolute inset-0 p-4 grid grid-cols-1 gap-4 content-start pointer-events-none">
+    <div className="absolute inset-0 p-2 md:p-4 grid grid-cols-2 md:grid-cols-1 gap-2 md:gap-4 content-start pointer-events-none">
       {icons.map((icon) => (
         <div key={icon.id} className="pointer-events-auto">
           <DesktopIcon
