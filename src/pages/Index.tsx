@@ -11,6 +11,7 @@ import ResumeWindow from "@/components/windows/ResumeWindow";
 import ContactWindow from "@/components/windows/ContactWindow";
 import GalleryWindow from "@/components/windows/GalleryWindow";
 import MinesweeperWindow from "@/components/windows/MinesweeperWindow";
+import MarioWindow from "@/components/windows/MarioWindow";
 import { sounds } from "@/utils/sounds";
 
 export interface WindowState {
@@ -101,6 +102,9 @@ const Index = () => {
         break;
       case "minesweeper":
         component = <MinesweeperWindow />;
+        break;
+      case "mario":
+        component = <MarioWindow />;
         break;
       default:
         component = <div>Window content</div>;

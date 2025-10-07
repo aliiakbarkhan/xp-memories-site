@@ -13,6 +13,7 @@ const Desktop = ({ onIconClick }: DesktopProps) => {
     { id: "resume", title: "Resume", icon: "📄" },
     { id: "gallery", title: "Gallery", icon: "🖼️" },
     { id: "contact", title: "Contact", icon: "📧" },
+    { id: "mario", title: "Mario Game", icon: "🍄" },
     { id: "minesweeper", title: "Minesweeper", icon: "💣" },
   ];
 
