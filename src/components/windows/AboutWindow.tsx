@@ -1,12 +1,23 @@
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import profilePic from "@/assets/profile.png";
+
 const AboutWindow = () => {
   return (
     <div className="p-6 space-y-4 font-['Tahoma',_sans-serif]">
       <div className="border-2 border-[#0054E3] bg-gradient-to-b from-blue-50 to-white p-4 rounded">
-        <h2 className="text-2xl font-bold text-[#0054E3] mb-2">Ali Akbar Khan</h2>
-        <p className="text-sm text-gray-700 font-semibold">
-          B.Tech CSE Student | ML Instructor & Developer
-        </p>
-        <p className="text-sm text-gray-600 mt-1">CGPA: 8.75</p>
+        <div className="flex items-center gap-4 mb-3">
+          <Avatar className="h-20 w-20 border-2 border-[#0054E3]">
+            <AvatarImage src={profilePic} alt="Ali Akbar Khan" />
+            <AvatarFallback>AK</AvatarFallback>
+          </Avatar>
+          <div>
+            <h2 className="text-2xl font-bold text-[#0054E3] mb-2">Ali Akbar Khan</h2>
+            <p className="text-sm text-gray-700 font-semibold">
+              B.Tech CSE Student | ML Instructor & Developer
+            </p>
+            <p className="text-sm text-gray-600 mt-1">CGPA: 8.75</p>
+          </div>
+        </div>
       </div>
 
       <div className="bg-[#ECE9D8] p-4 border-2 border-gray-400 rounded">
