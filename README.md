@@ -1,5 +1,7 @@
 # Welcome to your Lovable project
 
+<img src ="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/12cbe8a4-f55c-4b40-85bb-d8e1405e7b84/dkwh9xl-3682651a-b253-4b7f-abb9-5a430086e69e.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi8xMmNiZThhNC1mNTVjLTRiNDAtODViYi1kOGUxNDA1ZTdiODQvZGt3aDl4bC0zNjgyNjUxYS1iMjUzLTRiN2YtYWJiOS01YTQzMDA4NmU2OWUuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.hmFkLBQKK9hrin0F8gOXLr820l68UgZqqayAKY4yF4I" />
+
 ## Project info
 
 **URL**: https://lovable.dev/projects/e8ac7566-f6ba-4cf2-b09f-357708f1b950
